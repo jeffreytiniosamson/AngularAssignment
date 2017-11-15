@@ -1,6 +1,8 @@
 <div class="top_nav">
 {{navbarTitle}}<br/>
-<input #box (keyup.enter)="onEnter(box.value)" placeholder="Type username then [enter]"/>
+    <form>
+        <input #box (keyup.enter)="onEnter(box.value)" placeholder="Type username then [enter]"/>
+    </form>
 </div>
 
 <div *ngIf="usernameEntered">
@@ -11,6 +13,6 @@
     <p><strong>Blog: </strong>{{usernameInput.blog}}</p>
     <p><strong>Member Since: </strong>{{usernameInput.created_at}}</p>
 
-    <a href="{{usernameInput.html_url}}">View Profile</a>
-    <a href="{{usernameInput.repos_url}}">View Repositories</a>
+    <a href="{{usernameInput.html_url}}" class="btn btn-primary" type="button" >View Profile</a>
+    <a href="{{usernameInput.repos_url}}" class="btn btn-secondary" type="button" >View Repositories</a>
 </div>

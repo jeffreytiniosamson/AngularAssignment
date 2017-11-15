@@ -1,7 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -12,12 +13,10 @@ import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SearchBarComponent,
-    UserDetailComponent
+    AppComponent, SearchBarComponent, UserDetailComponent
   ],
   imports: [
-    BrowserModule, FormsModule, HttpModule
+    BrowserModule, FormsModule, HttpModule, HttpClientModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
