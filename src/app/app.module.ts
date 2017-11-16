@@ -4,12 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
-
 import { AppComponent } from './app.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
-
 import { UserService } from './services/user.service';
+
 
 @NgModule({
   declarations: [

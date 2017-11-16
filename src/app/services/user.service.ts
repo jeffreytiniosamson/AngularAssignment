@@ -1,7 +1,10 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { ErrorHandler } from '@angular/core';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+
 
 @Injectable()
 export class UserService {
@@ -22,6 +25,6 @@ export class UserService {
 
   getUser(value: string){
     return this.http.get('https://api.github.com/users/'+ value)
-    .map(res => res.json());
+      .map(res => res.json());
   }
 }

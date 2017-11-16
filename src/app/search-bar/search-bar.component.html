@@ -1,8 +1,9 @@
 <div class="top_nav">
-{{navbarTitle}}<br/>
-    <form>
-        <input #box (keyup.enter)="onEnter(box.value)" placeholder="Type username then [enter]"/>
-    </form>
+    {{navbarTitle}}<br/>
+    <input name="box" (keyup.enter)="onEnter(box.value)" [(ngModel)]="boxModel" placeholder="Type username then [enter]" required #box>
+</div>
+<div *ngIf="usernameBlank">
+    <div class="alert alert-danger">Field cannot be blank.</div>
 </div>
 
 <div *ngIf="usernameEntered">
@@ -16,3 +17,5 @@
     <a href="{{usernameInput.html_url}}" class="btn btn-primary" type="button" >View Profile</a>
     <a href="{{usernameInput.repos_url}}" class="btn btn-secondary" type="button" >View Repositories</a>
 </div>
+
+

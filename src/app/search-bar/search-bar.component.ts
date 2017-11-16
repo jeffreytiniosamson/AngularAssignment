@@ -3,6 +3,7 @@ import { UserService } from '../services/user.service';
 import { User } from '../user-detail/user';
 import { UserDetailComponent } from '../user-detail/user-detail.component';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { ErrorHandler } from '@angular/core';
 
 @Component({
   selector: 'app-search-bar',
@@ -15,7 +16,8 @@ export class SearchBarComponent implements OnInit {
   navbarTitle = "GitHub Profile Search";
   usernameInput: string;
   usernameEntered = false;
-  form: FormGroup;
+  usernameBlank = false;
+  usernameFound = false;
 
   constructor(private userService: UserService) { }
 
@@ -24,11 +26,20 @@ export class SearchBarComponent implements OnInit {
   }
 
   onEnter(value: string) {
-    this.usernameInput = value;
-    this.usernameEntered = true;
+    if(value == '')
+    {
+      this.usernameBlank = true;
+      this.usernameEntered = false;
+    }
+    if(value != '')
+    {
+      this.usernameInput = value;
+      this.usernameEntered = true;
+      this.usernameBlank = false;
 
-    this.userService.getUser(this.usernameInput).subscribe(entered => {
-      this.usernameInput = entered;
-    });
+      this.userService.getUser(this.usernameInput).subscribe(entered => {
+        this.usernameInput = entered;
+      });
+    }
   }
 }
