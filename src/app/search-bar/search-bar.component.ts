@@ -17,12 +17,15 @@ export class SearchBarComponent implements OnInit {
   usernameInput: string;
   usernameEntered = false;
   usernameBlank = false;
-  usernameFound = false;
+
+  //MAKE BLANK
+  errorMessage = "default";
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.userService.currentMessage.subscribe(message => this.usernameInput = message);
+    this.userService.currentError.subscribe(value => this.errorMessage = value);
   }
 
   onEnter(value: string) {
@@ -30,15 +33,18 @@ export class SearchBarComponent implements OnInit {
     {
       this.usernameBlank = true;
       this.usernameEntered = false;
+      this.errorMessage = '';
     }
     if(value != '')
     {
-      this.usernameInput = value;
-      this.usernameEntered = true;
       this.usernameBlank = false;
-
-      this.userService.getUser(this.usernameInput).subscribe(entered => {
-        this.usernameInput = entered;
+      this.usernameEntered = true;
+      this.errorMessage = '';
+      this.usernameInput = value;
+      
+      this.userService.getUser(this.usernameInput)
+        .subscribe((entered) => (this.usernameInput = entered),
+        (error) => {(this.errorMessage) = 'Username was not found.', this.usernameEntered = false;
       });
     }
   }

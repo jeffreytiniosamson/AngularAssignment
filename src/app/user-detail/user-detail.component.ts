@@ -16,11 +16,13 @@ export class UserDetailComponent implements OnInit {
   users:User[];
   user:User;
   usernameInput: string;
+  errorMessage = '';
 
   constructor(private userService: UserService) {
   }
 
   ngOnInit() {
     this.userService.currentMessage.subscribe(message => this.usernameInput = message);
+    this.userService.currentError.subscribe(value => this.errorMessage = value);
   }
 }
