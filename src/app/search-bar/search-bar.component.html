@@ -1,5 +1,5 @@
 <div class="top_nav">
-    {{navbarTitle}}<br/>
+    <h4>{{navbarTitle}}</h4>
     <input name="box" (keyup.enter)="onEnter(box.value)" [(ngModel)]="boxModel" placeholder="Type username then [enter]" required #box>
 </div>
 
@@ -21,7 +21,7 @@
     <a (click)="onClick()" class="btn btn-secondary" type="button" >View Repositories</a>
 </div>
 <div *ngIf="reposClicked">
-    <app-user-repo></app-user-repo>
+    <app-user-repo></app-user-repo>    
 </div>
 
 

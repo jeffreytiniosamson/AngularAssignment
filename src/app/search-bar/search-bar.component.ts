@@ -5,8 +5,6 @@ import { ErrorHandler } from '@angular/core';
 import { UserService } from '../services/user.service';
 
 
-
-
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
@@ -26,24 +24,37 @@ export class SearchBarComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+
+    console.log(this.usernameInput+'goo1');
     this.userService.currentMessage.subscribe(message => this.usernameInput = message);
+    console.log(this.usernameInput+'goo2');
     this.userService.currentError.subscribe(value => this.errorMessage = value);
   }
 
+  /*
+  [onEnter] method accepts a string from an input element.
+  [onEnter] method handles validation of the input element.
+    -If the content (entered by the user) within the input element passes validation.
+    -Then that value is assigned to variable [usernameInput] and passed to [getUser] service method.
+  */
   onEnter(value: string) {
     if(value == '')
     {
+      this.reposClicked = false;
       this.usernameBlank = true;
       this.usernameEntered = false;
       this.errorMessage = '';
     }
     if(value != '')
     {
+      this.reposClicked = false;
       this.usernameBlank = false;
       this.usernameEntered = true;
       this.errorMessage = '';
       this.usernameInput = value;
-      
+
+      this.userService.changeMessage(value);
+
       this.userService.getUser(this.usernameInput)
         .subscribe((entered) => (this.usernameInput = entered),
         (error) => {(this.errorMessage) = 'Username was not found.', this.usernameEntered = false;
@@ -51,8 +62,13 @@ export class SearchBarComponent implements OnInit {
     }
   }
 
+  /*
+  [onClick] method is created for the 'View Repositories' link/button (on html page).
+  [onClick] toggles boolean variables to reveal the current user's repositories.
+  */
   onClick() {
     this.reposClicked = true;
     this.usernameEntered = false;
+    this.userService.changeMessage(this.usernameInput);
   }
 }
