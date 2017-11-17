@@ -1,7 +1,7 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { ErrorHandler } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -19,18 +19,14 @@ export class UserService {
 
   constructor(private http: Http) {}
 
-  // changeMessage(message: string){
-  //   this.messageSource.next(message);
-  // }
-
-  getUsers(){
-    return this.http.get('https://api.github.com/users')
-    .map(res => res.json());
+  getUserRepos(value: string){
+    return this.http.get('https://api.github.com/users/'+ value +'/repos')
+    .map(response => response.json());
   }
 
   getUser(value: string){
     return this.http.get('https://api.github.com/users/'+ value)
-      .map(res => res.json())
+      .map(response => response.json())
       .catch(this.handleError);
   }
 

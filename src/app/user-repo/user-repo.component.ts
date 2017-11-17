@@ -1,24 +1,27 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { UserService } from '../services/user.service';
-import { User } from './user';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { ErrorHandler } from '@angular/core';
+import { UserService } from '../services/user.service';
+import { Repo } from './repo';
 
 @Component({
-  selector: 'app-user-detail',
-  templateUrl: './user-detail.component.html',
+  selector: 'app-user-repo',
+  templateUrl: './user-repo.component.html',
   providers: [UserService],
-  styleUrls: ['./user-detail.component.css'],
+  styleUrls: ['./user-repo.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class UserDetailComponent implements OnInit {
+export class UserRepoComponent implements OnInit {
   
-  users:User[];
-  user:User;
+  repos: Repo[];
   usernameInput: string;
   errorMessage = '';
 
   constructor(private userService: UserService) {
+    //'test' is a hard-coded placeholder
+    this.userService.getUserRepos('test').subscribe(repos => { console.log(repos),
+      this.repos = repos;
+    });
   }
 
   ngOnInit() {

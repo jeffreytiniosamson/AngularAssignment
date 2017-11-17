@@ -1,9 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { UserService } from '../services/user.service';
-import { User } from '../user-detail/user';
-import { UserDetailComponent } from '../user-detail/user-detail.component';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { UserRepoComponent } from '../user-repo/user-repo.component';
 import { ErrorHandler } from '@angular/core';
+import { UserService } from '../services/user.service';
+
+
+
 
 @Component({
   selector: 'app-search-bar',
@@ -15,11 +17,11 @@ import { ErrorHandler } from '@angular/core';
 export class SearchBarComponent implements OnInit {
   navbarTitle = "GitHub Profile Search";
   usernameInput: string;
-  usernameEntered = false;
-  usernameBlank = false;
+  usernameEntered: boolean;
+  usernameBlank: boolean;
+  reposClicked: boolean;
 
-  //MAKE BLANK
-  errorMessage = "default";
+  errorMessage = "";
 
   constructor(private userService: UserService) { }
 
@@ -47,5 +49,10 @@ export class SearchBarComponent implements OnInit {
         (error) => {(this.errorMessage) = 'Username was not found.', this.usernameEntered = false;
       });
     }
+  }
+
+  onClick() {
+    this.reposClicked = true;
+    this.usernameEntered = false;
   }
 }

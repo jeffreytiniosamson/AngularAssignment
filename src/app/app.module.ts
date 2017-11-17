@@ -6,13 +6,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
+import { UserRepoComponent } from './user-repo/user-repo.component';
 import { UserService } from './services/user.service';
 
 
 @NgModule({
   declarations: [
-    AppComponent, SearchBarComponent, UserDetailComponent
+    AppComponent, SearchBarComponent, UserRepoComponent
   ],
   imports: [
     BrowserModule, FormsModule, HttpModule, HttpClientModule

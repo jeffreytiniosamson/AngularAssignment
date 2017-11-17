@@ -1,20 +1,20 @@
 // import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { SearchBarComponent } from './search-bar.component';
+// import { UserRepoComponent } from './user-repo.component';
 
-// describe('SearchBarComponent', () => {
-//   let component: SearchBarComponent;
-//   let fixture: ComponentFixture<SearchBarComponent>;
+// describe('UserRepoComponent', () => {
+//   let component: UserRepoComponent;
+//   let fixture: ComponentFixture<UserRepoComponent>;
 
 //   beforeEach(async(() => {
 //     TestBed.configureTestingModule({
-//       declarations: [ SearchBarComponent ]
+//       declarations: [ UserRepoComponent ]
 //     })
 //     .compileComponents();
 //   }));
 
 //   beforeEach(() => {
-//     fixture = TestBed.createComponent(SearchBarComponent);
+//     fixture = TestBed.createComponent(UserRepoComponent);
 //     component = fixture.componentInstance;
 //     fixture.detectChanges();
 //   });

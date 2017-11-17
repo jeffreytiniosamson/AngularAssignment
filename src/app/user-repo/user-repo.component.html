@@ -1,0 +1,11 @@
+<h3>{{usernameInput}} Repositories</h3>
+
+<ul class="list-group">
+    <div>
+    <li class="list-group-item  align-items-center justify-content-between " *ngFor="let repo of repos">
+        <!-- JUSTIFY DESCRIPTION LEFT -->
+        <strong>{{repo.name}} </strong><span class="justify-content-left">{{repo.description}}</span>
+        <span><a href="https://github.com/{{repo.full_name}}" class="btn btn-default" type="button" >View Repo</a></span>
+    </li>
+    </div>
+</ul>

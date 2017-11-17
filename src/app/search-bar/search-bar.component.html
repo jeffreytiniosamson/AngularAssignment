@@ -2,6 +2,7 @@
     {{navbarTitle}}<br/>
     <input name="box" (keyup.enter)="onEnter(box.value)" [(ngModel)]="boxModel" placeholder="Type username then [enter]" required #box>
 </div>
+
 <div *ngIf="usernameBlank">
     <div class="alert alert-danger">Field cannot be blank.</div>
 </div>
@@ -17,7 +18,11 @@
     <p><strong>Member Since: </strong>{{usernameInput.created_at}}</p>
 
     <a href="{{usernameInput.html_url}}" class="btn btn-primary" type="button" >View Profile</a>
-    <a href="{{usernameInput.repos_url}}" class="btn btn-secondary" type="button" >View Repositories</a>
+    <a (click)="onClick()" class="btn btn-secondary" type="button" >View Repositories</a>
 </div>
+<div *ngIf="reposClicked">
+    <app-user-repo></app-user-repo>
+</div>
+
 
 
