@@ -22,6 +22,7 @@ export class UserService {
 
   changeMessage(message: string){
     this.messageSource.next(message);
+    console.log("Message: "+this.messageSource.getValue());
   }
 
   getMessage(){

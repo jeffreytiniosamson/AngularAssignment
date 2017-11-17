@@ -1,5 +1,5 @@
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
 import { UserRepoComponent } from '../user-repo/user-repo.component';
 import { ErrorHandler } from '@angular/core';
 import { UserService } from '../services/user.service';
@@ -15,6 +15,7 @@ import { UserService } from '../services/user.service';
 export class SearchBarComponent implements OnInit {
   navbarTitle = "GitHub Profile Search";
   usernameInput: string;
+  @Output() messageEvent = new EventEmitter<string>();
   usernameEntered: boolean;
   usernameBlank: boolean;
   reposClicked: boolean;
@@ -70,5 +71,10 @@ export class SearchBarComponent implements OnInit {
     this.reposClicked = true;
     this.usernameEntered = false;
     this.userService.changeMessage(this.usernameInput);
+    this.messageEvent.emit(this.usernameInput);
+  }
+
+  sendMessage(){
+    this.messageEvent.emit(this.usernameInput);
   }
 }

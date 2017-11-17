@@ -1,5 +1,5 @@
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
 import { SearchBarComponent } from '../search-bar/search-bar.component';
 import { ErrorHandler } from '@angular/core';
 import { UserService } from '../services/user.service';
@@ -14,7 +14,7 @@ import { Repo } from './repo';
 })
 export class UserRepoComponent implements OnInit {
 
-  @Input() usernameInput: string;
+  usernameInput: string;
   repos: Repo[];
 
   errorMessage = '';
@@ -22,6 +22,7 @@ export class UserRepoComponent implements OnInit {
   constructor(public userService: UserService) {
     this.userService.currentMessage.subscribe(message => this.usernameInput = message);
     this.userService.currentError.subscribe(value => this.errorMessage = value);
+
 
     /*
     ***DEVELOPER NOTES***
